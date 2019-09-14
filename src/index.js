@@ -10,6 +10,8 @@ const port = 5000;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/', freshHelpers);
 app.use('/hooks', hooks);
 
