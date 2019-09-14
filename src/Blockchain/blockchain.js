@@ -1,8 +1,11 @@
 const Block = require('./block');
+var dt = new Date();
+var timestamp = dt.toString();
 
 class Blockchain {
   constructor() {
     this.chain = [this.createGenesis()];
+    this.difficulty = 4;
   }
 
   createGenesis() {
@@ -15,6 +18,7 @@ class Blockchain {
 
   addBlock(newBlock) {
     newBlock.previousHash = this.latestBlock().hash;
+    newBlock.mineBlock(this.difficulty);
     this.chain.push(newBlock);
   }
 
@@ -31,6 +35,7 @@ class Blockchain {
     }
     return true;
   }
+
 }
 
 module.exports = Blockchain;
