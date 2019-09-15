@@ -1,4 +1,5 @@
 import { number } from "prop-types";
+import { axios } from 'axios';
 
 export const getBlocks = async () => {
   const data = await new Promise((res) =>{
