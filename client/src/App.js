@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
+import Reconcillation from "./components/Reconcillation/Reconcillation";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      <Reconcillation />
     </div>
   );
 }

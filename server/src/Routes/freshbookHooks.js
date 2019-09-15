@@ -12,7 +12,9 @@ const urlExp = (account,invoice) => `https://api.freshbooks.com/accounting/accou
 Router.post('/invoice', async (req, res) => {
     res.send();
     const invoiceToken = req.body.object_id;
+    console.log(invoiceToken);
     const accountID = req.body.account_id;
+    console.log(accountID);
     console.log(urlVoice(accountID, invoiceToken));
     const result = await axios.get(urlVoice(accountID, invoiceToken), {
         headers:{

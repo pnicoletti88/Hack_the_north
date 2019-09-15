@@ -31,3 +31,13 @@ export const getBlocks = async () => {
   }, 1000);
   return data;
 };
+
+export const mockRecData = async () => {
+  console.log("in")
+  return await new Promise((res) => res({
+    freshRev: 1000,
+    freshExp: 500,
+    blockRev: 1000,
+    blockExp: 500
+  }))
+}
