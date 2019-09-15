@@ -15,6 +15,9 @@ function App() {
       <div className="chart-holder container">
         <Chart></Chart>
       </div>
+      <div className="terminal-holder container">
+        
+      </div>
     </div>
   );
 }
