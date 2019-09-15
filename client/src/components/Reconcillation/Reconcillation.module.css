@@ -1,0 +1,47 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.row{
+    display: flex;
+    margin: 10px;
+}
+
+.name{
+    width: 100px;
+    font-weight: "bold";
+    margin: 5px;
+
+}
+
+.value{
+    width: 175px;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.title{
+    width: 175px;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.line{
+    border-top: 3px solid black;
+}
+
+.green{
+    display: flex;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.red{
+    display: flex;
+    background-color: red;
+    border-radius: 5px;
+}

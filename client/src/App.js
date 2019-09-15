@@ -13,7 +13,7 @@ function App() {
         </h1>
       </div>
       <div className="chart-holder container">
-        <Chart></Chart>
+        <Chart/>
       </div>
       <div className="terminal-holder container">
         
