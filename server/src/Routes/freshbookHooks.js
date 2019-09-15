@@ -78,7 +78,9 @@ Router.get('/getBlocks', async (req, res) => {
 Router.post('/invoice', async (req, res) => {
     res.send();
     const invoiceToken = req.body.object_id;
+    console.log(invoiceToken);
     const accountID = req.body.account_id;
+    console.log(accountID);
     console.log(urlVoice(accountID, invoiceToken));
     const result = await axios.get(urlVoice(accountID, invoiceToken), {
         headers:{
@@ -191,6 +193,24 @@ Router.post('/expense', async (req, res) => {
             })
         }
     })
+});
+
+Router.get('/totals', async (req, res) => {
+    console.log('hello');
+    const result = await axios.get('https://api.freshbooks.com/accounting/account/n7nxNe/reports/accounting/profitloss_entity', {
+        headers:{
+            Authorization: `Bearer aa694c1478b49f7499e5ebc9957afddf67a7c047b15f70652a6642f70ca38fde`
+        }        
+    })
+
+    incomeTotal = result.data.response.result.profitloss.income[0].total.amount;
+    expensesTotal = result.data.response.result.profitloss.expenses[0].total.amount;
+
+    res.send({
+        expenses: expensesTotal,
+        income: incomeTotal
+    });
+
 });
 
 module.exports = Router;

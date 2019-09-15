@@ -7,7 +7,7 @@ export default class Chart extends Component {
   constructor() {
     super();
     this.state = {
-      blocks: null,
+      blocks: [],
       error: null,
       isLoading: true
     };
@@ -24,17 +24,17 @@ export default class Chart extends Component {
 
   renderBlocks() {
     if (this.state.blocks) {
+      console.log(this.state.blocks);
       return (
-        <div className="blocks-holder d-flex justify-content-center align-items-center">
+        <div className="blocks-holder">
           {this.state.blocks.map((block, i) => {
             return (
-              <div
-                className="block-container d-flex flex-column justify-content-center align-items-center"
-                key={i + "key"}
-              >
-                <h4 className="block-index">{block.blockIndex}</h4>
-                <h4 className="transaction-type">{block.data.yeet1}</h4>
-                <h4 className="timestamp">{block.timeStamp}</h4>
+              <div className="block-container" key={i + "key"}>
+                <div className="forced-container d-flex flex-column justify-content-center align-items-center">
+                  <h4 className="block-index">{block.blockIndex}</h4>
+                  <h4 className="transaction-type">{block.data.yeet1}</h4>
+                  <h4 className="timestamp">{block.timeStamp}</h4>
+                </div>
               </div>
             );
           })}

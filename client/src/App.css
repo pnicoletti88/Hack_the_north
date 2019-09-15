@@ -1,5 +1,33 @@
 .App {
-  height: 100%;
-  width: 100%;
-  background-color: #392342;
+  height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #333333;
+  color: #fff;
+  position: relative;
+}
+
+.App .header-holder {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.App .header-holder .freshbooks-logo{
+  height: 80px;
+  width: auto;
+  object-fit: cover;
+  padding-right: 20px;
+  border-right: 2px solid white;
+}
+
+.App .header-holder .freshbooks-heading{
+  font-weight: 100;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.chart-holder {
+  margin-top: 200px;
+  min-height: 302.4px;
 }
