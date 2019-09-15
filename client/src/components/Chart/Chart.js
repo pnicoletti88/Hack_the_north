@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { getBlocks } from "../../util";
-import PropTypes from "prop-types";
 import "./styles/chart.css";
 
 export default class Chart extends Component {
