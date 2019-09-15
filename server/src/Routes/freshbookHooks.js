@@ -10,77 +10,11 @@ const urlHook = (account,id) => `https://api.freshbooks.com/events/account/${acc
 const urlVoice = (account,invoice) => `https://api.freshbooks.com/accounting/account/${account}/invoices/invoices/${invoice}`
 const urlExp = (account,invoice) => `https://api.freshbooks.com/accounting/account/${account}/expenses/expenses/${invoice}`
 
-Router.get('/total', async (req, res) => {
-    let blockList = [];
-    let totalInvoice = 0;
-    let totalExpense = 0;
-    const data = await new Promise((resolve, reject) => {
-        db.ref('/size').once('value', function(snapshot){
-            size = snapshot.val().size;
-
-            db.ref('/Block').once('value', function(blocks){
-                blockList = blocks;
-            })
-
-            for (let x = 0; x < size; x++){
-                if (block.val().data.type === 'Invoice'){
-                    totalInvoice = totalInvoice + blockList[x].val().data.amount;
-                }
-                else{
-                    totalExpense = totalExpense + blockList[x].val().data.amount;
-                }
-            }
-            resolve({totalInvoice, totalExpense});
-        })
-        
-    })
-    
-    res.send(data);
-});
-
-Router.get('/validate', async (req, res) => {
-    let isValidate = true;
-    const data = await new Promise((resolve, reject) => {
-        db.ref('/size').once('value', function(snapshot){
-            size = snapshot.val().size;
-            
-            db.ref('/Block').once('value', function(blocks){
-                for (let x = 1; x < size; x++){
-                    const currentBlock = blocks.val()[x];
-                    const previousBlock = blocks.val()[x-1];
-                        if (currentBlock.hash !== currentBlock.calculateHash()) {
-                            isValidate = false;
-                            break;
-                        }
-                        if (currentBlock.previousHash !== previousBlock.hash) {
-                            isValidate = false;
-                            break;
-                        }
-                }
-            })
-            resolve(isValidate);
-        })
-        
-    })
-    
-    res.send(data);
-});
-
-Router.get('/getBlocks', async (req, res) => {
-    const data = await new Promise((resolve, reject) => {
-        db.ref('/Block').once('value', function(blocks){
-            resolve(blocks);
-        })
-    })
-    res.send(data);
-});
 
 Router.post('/invoice', async (req, res) => {
     res.send();
     const invoiceToken = req.body.object_id;
-    console.log(invoiceToken);
     const accountID = req.body.account_id;
-    console.log(accountID);
     console.log(urlVoice(accountID, invoiceToken));
     const result = await axios.get(urlVoice(accountID, invoiceToken), {
         headers:{
@@ -92,7 +26,7 @@ Router.post('/invoice', async (req, res) => {
     dataEncode = {
         amount: invoice.amount.amount,
         organization: invoice.organization,
-        type: 'Invoice'
+        type: "Invoice"
     }
 
     db.ref('/size').once('value', function(snapshot){
@@ -151,7 +85,7 @@ Router.post('/expense', async (req, res) => {
     dataEncode = {
         amount: expense.amount.amount,
         organization: expense.vendor,
-        type: 'Expense'
+        type: "Expense"
     }
 
     db.ref('/size').once('value', function(snapshot){
@@ -196,8 +130,7 @@ Router.post('/expense', async (req, res) => {
 });
 
 Router.get('/totals', async (req, res) => {
-    console.log('hello');
-    const result = await axios.get('https://api.freshbooks.com/accounting/account/n7nxNe/reports/accounting/profitloss_entity', {
+    const result = await axios.get('https://api.freshbooks.com/accounting/account/n7nxNe/reports/accounting/profitloss_entity?start_date=2019-01-01&end_date=2019-10-01', {
         headers:{
             Authorization: `Bearer aa694c1478b49f7499e5ebc9957afddf67a7c047b15f70652a6642f70ca38fde`
         }        
