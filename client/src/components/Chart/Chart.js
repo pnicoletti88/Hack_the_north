@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { getBlocks } from "../../util";
 import "./styles/chart.css";
 import arrow from "../../assets/arrow.png";
+import {dbURL} from "../../util";
 
 export default class Chart extends Component {
   constructor() {
@@ -14,8 +16,8 @@ export default class Chart extends Component {
   }
 
   getData = async () => {
-    const data = await getBlocks();
-    this.setState({ blocks: data, isLoading: false });
+    const data = await axios.get(`${dbURL}/hooks/getBlocks`);
+    this.setState({ blocks: data.data, isLoading: false });
   };
 
   componentDidMount() {
@@ -24,18 +26,20 @@ export default class Chart extends Component {
 
   renderBlocks() {
     if (this.state.blocks) {
-      console.log(this.state.blocks);
       return (
         <div className="blocks-holder">
           {this.state.blocks.map((block, i) => {
             return (
+              <div className="flexxin">
               <div className="block-container" key={i + "key"}>
                 <div className="forced-container d-flex flex-column justify-content-center align-items-center">
-                  <h4 className="block-index">{block.blockIndex}</h4>
-                  <h4 className="transaction-type">{block.data.yeet1}</h4>
+                  <h4 className="block-index">{this.state.blocks.length -i}</h4>
+                  <h4 className="transaction-type">{block.data.type}</h4>
+                  <h4 className="transaction-type">{block.data.amount}</h4>
                   <h4 className="timestamp">{block.timeStamp}</h4>
                 </div>
-                <img src={arrow} className="arrow"/>
+              </div>
+              {i !== 0 ? <img src={arrow} className="arrow"/> : null}
               </div>
             );
           })}

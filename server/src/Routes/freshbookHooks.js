@@ -11,30 +11,27 @@ const urlVoice = (account,invoice) => `https://api.freshbooks.com/accounting/acc
 const urlExp = (account,invoice) => `https://api.freshbooks.com/accounting/account/${account}/expenses/expenses/${invoice}`
 
 Router.get('/total', async (req, res) => {
-    let blockList = [];
+    let blockList;
     let totalInvoice = 0;
     let totalExpense = 0;
     const data = await new Promise((resolve, reject) => {
-        db.ref('/size').once('value', function(snapshot){
-            size = snapshot.val().size;
-
             db.ref('/Block').once('value', function(blocks){
-                blockList = blocks;
+                blockList = blocks.val();
+                if(blockList && blockList.length){
+                    for (let x = 0; x < blockList.length; x++){
+                        if (blockList[x].data.type === 'Invoice'){
+                            totalInvoice = totalInvoice + parseInt(blockList[x].data.amount);
+                        }
+                        else{
+                            totalExpense = totalExpense + parseInt(blockList[x].data.amount);
+                        }
+                    }
+                }
+                resolve({totalInvoice, totalExpense});
             })
 
-            for (let x = 0; x < size; x++){
-                if (block.val().data.type === 'Invoice'){
-                    totalInvoice = totalInvoice + blockList[x].val().data.amount;
-                }
-                else{
-                    totalExpense = totalExpense + blockList[x].val().data.amount;
-                }
-            }
-            resolve({totalInvoice, totalExpense});
+            
         })
-
-    })
-
     res.send(data);
 });
 
@@ -72,7 +69,7 @@ Router.get('/getBlocks', async (req, res) => {
             resolve(blocks);
         })
     })
-    res.send(data);
+    res.send(data.val().reverse());
 });
 
 Router.post('/invoice', async (req, res) => {
@@ -135,8 +132,18 @@ Router.post('/invoice', async (req, res) => {
     
 });
 
+let hit = false;
 Router.post('/expense', async (req, res) => {
     res.send();
+    if(hit){
+        return;
+    }
+    hit = true;
+    setTimeout(() => {
+        hit = false;
+    }, 1000);
+
+    
     const expenseToken = req.body.object_id;
     const accountID = req.body.account_id;
     const result = await axios.get(urlExp(accountID, expenseToken), {
@@ -200,8 +207,18 @@ Router.get('/totals', async (req, res) => {
         }        
     })
 
-    incomeTotal = result.data.response.result.profitloss.income[0].total.amount;
-    expensesTotal = result.data.response.result.profitloss.expenses[0].total.amount;
+    const incomeLength = result.data.response.result.profitloss.income.length;
+    
+    const expenseLength = result.data.response.result.profitloss.expenses.length;
+    console.log(result.data.response.result.profitloss.expenses);
+
+    incomeTotal = parseInt(result.data.response.result.profitloss.income[0].total.amount);
+
+    expensesTotal = 0;
+    
+    for(let i=0; i<result.data.response.result.profitloss.expenses.length; i++){
+        expensesTotal += parseInt(result.data.response.result.profitloss.expenses[i].total.amount);
+    }
 
     res.send({
         expenses: expensesTotal,

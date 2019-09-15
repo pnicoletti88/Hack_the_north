@@ -31,3 +31,8 @@
   margin-top: 200px;
   min-height: 302.4px;
 }
+
+.centerBaby{
+  display:flex;
+  justify-content: center;
+}

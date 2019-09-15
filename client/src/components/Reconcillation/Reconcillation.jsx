@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import cx from 'classnames';
 import styles from './Reconcillation.module.css';
-import { mockRecData } from '../../util';
+import { dbURL } from '../../util';
 
 class Reconcillation extends Component {
     constructor(props) {
@@ -12,10 +13,18 @@ class Reconcillation extends Component {
     }
 
     getData = async () => {
-        const result = await mockRecData();
+        const [block, fresh] = await Promise.all([
+            axios.get(`${dbURL}/hooks/total`),
+            axios.get(`${dbURL}/hooks/totals`),
+        ]);
+        console.log(block);
+        console.log(fresh);
         this.setState({
-            ...result,
-            isLoading: false
+            isLoading: false,
+            blockRev: block.data.totalInvoice,
+            blockExp: block.data.totalExpense,
+            freshRev: fresh.data.income,
+            freshExp: fresh.data.expenses
         })
     }
 

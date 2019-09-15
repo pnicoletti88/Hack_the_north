@@ -271,3 +271,5 @@ export const mockRecData = async () => {
     blockExp: 500
   }))
 }
+
+export const dbURL = "http://localhost:5000"
