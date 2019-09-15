@@ -1,0 +1,32 @@
+.blocks-main-container {
+  width: 100%;
+  height: 100%;
+}
+
+.blocks-holder {
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+}
+
+.blocks-holder .block-container {
+  height: 100px;
+  width: 100px;
+  border: 1px solid grey;
+  overflow: hidden;
+}
+
+.blocks-holder .block-container h4.block-index {
+  font-size: 1.2rem;
+  color: darkolivegreen;
+}
+
+.blocks-holder .block-container h4.transaction-type {
+  font-weight: 500;
+  color: blue;
+}
+
+.blocks-holder .block-container h4.timeStamp {
+  color: purple;
+}
+
