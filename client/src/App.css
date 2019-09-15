@@ -1,33 +1,33 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #333333;
+  color: #fff;
+  position: relative;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.App .header-holder {
+  position: absolute;
+  top: 40px;
+  left: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.App .header-holder .freshbooks-logo{
+  height: 80px;
+  width: auto;
+  object-fit: cover;
+  padding-right: 20px;
+  border-right: 2px solid white;
 }
 
-.App-link {
-  color: #61dafb;
+.App .header-holder .freshbooks-heading{
+  font-weight: 100;
+  padding-top: 20px;
+  padding-left: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chart-holder {
+  margin-top: 200px;
+  min-height: 302.4px;
 }

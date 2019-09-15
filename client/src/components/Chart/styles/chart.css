@@ -1,0 +1,56 @@
+.blocks-main-container {
+  width: 100%;
+  height: 100%;
+  border: 4px solid black;
+  border-radius: 10px;
+  background-color: #e6e6e6;
+  min-height: 302.4px;
+}
+
+.blocks-holder {
+  height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.blocks-holder .block-container {
+  -webkit-box-shadow: 0px 5px 15px -6px rgba(138, 138, 138, 1);
+  -moz-box-shadow: 0px 5px 15px -6px rgba(138, 138, 138, 1);
+  box-shadow: 0px 5px 15px -6px rgba(138, 138, 138, 1);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: inline-block;
+  text-align: center;
+  height: 180px;
+  padding-left: 180px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+  background-color: #fff;
+}
+
+.forced-container {
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.blocks-holder .block-container h4.block-index {
+  font-size: 1.2rem;
+  color: darkolivegreen;
+}
+
+.blocks-holder .block-container h4.transaction-type {
+  font-weight: 500;
+  color: blue;
+}
+
+.blocks-holder .block-container h4.timestamp {
+  color: purple;
+}

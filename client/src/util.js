@@ -1,0 +1,262 @@
+import { number } from "prop-types";
+
+export const getBlocks = async () => {
+  const data = await new Promise((res) =>{
+    setTimeout(() => {
+    res([
+      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },
+      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },      {
+        blockIndex: 1,
+        data: {
+          yeet1: "yes",
+          yeet2: "yes"
+        },
+        timeStamp: "12323135"
+      },
+      {
+        blockIndex: 2,
+        data: {
+          yeet1: "no",
+          yeet2: "yes"
+        },
+        timeStamp: "09439830"
+      },
+      {
+        blockIndex: 1,
+        data: {
+          yeet1: "no",
+          yeet2: " no"
+        },
+        timeStamp: "5420301"
+      }
+    ]);
+  }, 1000);
+  });
+  console.log(data)
+  return data;
+};
