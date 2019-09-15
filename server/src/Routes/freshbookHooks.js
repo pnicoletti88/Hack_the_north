@@ -1,5 +1,7 @@
 const express = require('express');
 const axios = require('axios');
+const db = require('../db');
+const Block = require('../Blockchain/block');
 
 const Router = express.Router();
 const createhook = require('./webhooks');
@@ -20,6 +22,52 @@ Router.post('/invoice', async (req, res) => {
         }
     })
     const invoice = result.data.response.result.invoice;
+
+    dataEncode = {
+        amount: invoice.amount.amount,
+        organization: invoice.organization,
+        type: "Invoice"
+    }
+
+    db.ref('/size').once('value', function(snapshot){
+        var dt = new Date();
+        var timestamp1 = dt.toString();
+        let size = snapshot.val().size;
+
+        if(size === 0){
+            let firstBlock = new Block(0, timestamp1, 'Genesis Block', '0');
+            
+            db.ref('Block/' + firstBlock.index).set({
+                timestamp: timestamp1,
+                data: dataEncode,
+                previousHash: 0,
+                hash: firstBlock.hash,
+                nonce: 0
+            });
+
+            db.ref('size/').set({
+                size: 1
+            })
+        }
+        else{
+            db.ref('Block/' + (size-1)).once('value', function(prevBlock){
+                let newBlock = new Block(size, timestamp1, dataEncode, prevBlock.val().hash);
+                newBlock.mineBlock(4);
+
+                db.ref('Block/' + newBlock.index).set({
+                    timestamp: newBlock.timestamp,
+                    data: newBlock.data,
+                    previousHash: newBlock.previousHash,
+                    hash: newBlock.hash,
+                    nonce: 0
+                });
+
+                db.ref('size/').set({
+                    size: (size+1)
+                })
+            })
+        }
+    })
     
 });
 
@@ -34,6 +82,51 @@ Router.post('/expense', async (req, res) => {
     })
     const expense = result.data.response.result.expense;
     
+    dataEncode = {
+        amount: expense.amount.amount,
+        organization: expense.vendor,
+        type: "Expense"
+    }
+
+    db.ref('/size').once('value', function(snapshot){
+        var dt = new Date();
+        var timestamp1 = dt.toString();
+        let size = snapshot.val().size;
+
+        if(size === 0){
+            let firstBlock = new Block(0, timestamp1, 'Genesis Block', '0');
+            
+            db.ref('Block/' + firstBlock.index).set({
+                timestamp: timestamp1,
+                data: dataEncode,
+                previousHash: 0,
+                hash: firstBlock.hash,
+                nonce: 0
+            });
+
+            db.ref('size/').set({
+                size: 1
+            })
+        }
+        else{
+            db.ref('Block/' + (size-1)).once('value', function(prevBlock){
+                let newBlock = new Block(size, timestamp1, dataEncode, prevBlock.val().hash);
+                newBlock.mineBlock(4);
+
+                db.ref('Block/' + newBlock.index).set({
+                    timestamp: newBlock.timestamp,
+                    data: newBlock.data,
+                    previousHash: newBlock.previousHash,
+                    hash: newBlock.hash,
+                    nonce: 0
+                });
+
+                db.ref('size/').set({
+                    size: (size+1)
+                })
+            })
+        }
+    })
 });
 
 module.exports = Router;

@@ -4,7 +4,6 @@ var timestamp = dt.toString();
 
 class Blockchain {
   constructor() {
-    this.chain = [this.createGenesis()];
     this.difficulty = 4;
   }
 
