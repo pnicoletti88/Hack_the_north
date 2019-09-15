@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getBlocks } from "../../util";
 import "./styles/chart.css";
+import arrow from "../../assets/arrow.png";
 
 export default class Chart extends Component {
   constructor() {
@@ -34,6 +35,7 @@ export default class Chart extends Component {
                   <h4 className="transaction-type">{block.data.yeet1}</h4>
                   <h4 className="timestamp">{block.timeStamp}</h4>
                 </div>
+                <img src={arrow} className="arrow"/>
               </div>
             );
           })}

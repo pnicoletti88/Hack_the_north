@@ -11,6 +11,8 @@
   height: 100%;
   overflow-x: auto;
   white-space: nowrap;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .blocks-holder .block-container {
@@ -53,4 +55,9 @@
 
 .blocks-holder .block-container h4.timestamp {
   color: purple;
+}
+
+.arrow{
+  width: 40px;
+  height: 40px;
 }
