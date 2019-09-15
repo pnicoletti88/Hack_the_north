@@ -99,7 +99,7 @@ Router.post('/invoice', async (req, res) => {
         let size = snapshot.val().size;
 
         if(size === 0){
-            let firstBlock = new Block(0, timestamp1, 'Genesis Block', '0');
+            let firstBlock = new Block(0, timestamp1, {amount: 'genesis block', organization: 'genesis block', type: 'genesis block'}, '0');
             
             db.ref('Block/' + firstBlock.index).set({
                 timestamp: timestamp1,
@@ -158,7 +158,7 @@ Router.post('/expense', async (req, res) => {
         let size = snapshot.val().size;
 
         if(size === 0){
-            let firstBlock = new Block(0, timestamp1, 'Genesis Block', '0');
+            let firstBlock = new Block(0, timestamp1, {amount: 'genesis block', organization: 'genesis block', type: 'genesis block'}, '0');
             
             db.ref('Block/' + firstBlock.index).set({
                 timestamp: timestamp1,
